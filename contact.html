@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html">Order Online</a></li>
+      <li><a href="reservations.html">Reserve</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="login.html" class="btn btn-outline">Login</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section style="background:var(--bg2);padding:4rem 0 2rem;text-align:center;border-bottom:1px solid rgba(201,150,58,0.1);">
+  <div class="container">
+    <h1 style="color:var(--cream);">Get in Touch</h1>
+    <p style="max-width:450px;margin:.75rem auto 0;">We'd love to hear from you — whether it's a question, feedback, or a catering enquiry.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+
+    <!-- CONTACT FORM -->
+    <div>
+      <div id="contact-success" class="alert alert-success"></div>
+
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="c-name">Your Name *</label>
+            <input type="text" id="c-name" class="form-control" placeholder="Full name" />
+            <span class="error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-phone">Phone Number</label>
+            <input type="tel" id="c-phone" class="form-control" placeholder="Optional" />
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="c-email">Email Address *</label>
+          <input type="email" id="c-email" class="form-control" placeholder="your@email.com" />
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="c-subject">Subject *</label>
+          <select id="c-subject" class="form-control">
+            <option value="">Select a subject</option>
+            <option>General Enquiry</option>
+            <option>Catering / Events</option>
+            <option>Feedback / Complaint</option>
+            <option>Reservation Help</option>
+            <option>Order Issue</option>
+            <option>Partnership / Media</option>
+            <option>Other</option>
+          </select>
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="c-msg">Message *</label>
+          <textarea id="c-msg" class="form-control" placeholder="Tell us how we can help..." rows="5"></textarea>
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group" style="display:flex;gap:.75rem;align-items:flex-start;">
+          <input type="checkbox" id="c-consent" style="width:18px;height:18px;margin-top:.2rem;accent-color:var(--gold);" />
+          <label for="c-consent" style="font-size:.88rem;color:var(--text-muted);">
+            I consent to Ember &amp; Plate storing my details to respond to my enquiry.
+          </label>
+        </div>
+        <span class="error-msg" id="consent-err"></span>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem;">Send Message →</button>
+      </form>
+    </div>
+
+    <!-- INFO -->
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+      <div class="card">
+        <div class="card-body" style="display:flex;gap:1rem;align-items:flex-start;">
+          <span style="font-size:1.8rem;">📍</span>
+          <div>
+            <h4 style="color:var(--cream);margin-bottom:.35rem;">Address</h4>
+            <p style="font-size:.9rem;">Jalan SS2/24, SS2,<br>47300 Petaling Jaya, Selangor</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body" style="display:flex;gap:1rem;align-items:flex-start;">
+          <span style="font-size:1.8rem;">📞</span>
+          <div>
+            <h4 style="color:var(--cream);margin-bottom:.35rem;">Phone</h4>
+            <p style="font-size:.9rem;"><a href="tel:+60312345678">+603-1234-5678</a><br>Mon – Sun, 10:00 AM – 10:00 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body" style="display:flex;gap:1rem;align-items:flex-start;">
+          <span style="font-size:1.8rem;">✉️</span>
+          <div>
+            <h4 style="color:var(--cream);margin-bottom:.35rem;">Email</h4>
+            <p style="font-size:.9rem;"><a href="mailto:hello@emberplate.com">hello@emberplate.com</a><br>We reply within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h4 style="color:var(--cream);margin-bottom:1rem;">Opening Hours</h4>
+          <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.9rem;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Mon – Thu</span><span style="color:var(--gold);">11:00 AM – 10:00 PM</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Fri – Sat</span><span style="color:var(--gold);">11:00 AM – 11:30 PM</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Sunday</span><span style="color:var(--gold);">10:00 AM – 10:00 PM</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="grid footer-grid">
+      <div>
+        <div class="footer-brand">Ember &amp; Plate</div>
+        <p class="footer-desc">Fine casual dining in Petaling Jaya.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order Online</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📍 Jalan SS2/24, Petaling Jaya</a></li>
+          <li><a href="tel:+60312345678">📞 +603-1234-5678</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ember &amp; Plate. All rights reserved.</span>
+      <span>Crafted with 🔥 in PJ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+
+  valid &= validateField(document.getElementById('c-name'),    {required:true, minLen:2});
+  valid &= validateField(document.getElementById('c-email'),   {required:true, email:true});
+  valid &= validateField(document.getElementById('c-subject'), {required:true, requiredMsg:'Please select a subject.'});
+  valid &= validateField(document.getElementById('c-msg'),     {required:true, minLen:20, requiredMsg:'Please enter your message (min 20 characters).'});
+
+  // Optional phone — only validate format if filled
+  const phone = document.getElementById('c-phone');
+  if (phone.value.trim()) valid &= validateField(phone, {phone:true});
+
+  // Consent
+  const consent = document.getElementById('c-consent');
+  const consentErr = document.getElementById('consent-err');
+  if (!consent.checked) {
+    consentErr.textContent = 'Please give your consent to proceed.';
+    consentErr.classList.add('show');
+    valid = false;
+  } else {
+    consentErr.classList.remove('show');
+  }
+
+  if (valid) {
+    showAlert('contact-success','success','✅ Message sent! We will get back to you within 24 hours.');
+    document.getElementById('contact-success').scrollIntoView({behavior:'smooth'});
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>

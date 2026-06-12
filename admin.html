@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="brand">🔥 Ember &amp; Plate<br><span style="font-size:.75rem;color:var(--text-muted);font-family:var(--font-body);">Admin Panel</span></div>
+    <ul class="admin-nav">
+      <li><a href="#" class="active" onclick="showSection('dashboard',this)">📊 &nbsp;Dashboard</a></li>
+      <li><a href="#" onclick="showSection('orders',this)">🧾 &nbsp;Orders</a></li>
+      <li><a href="#" onclick="showSection('reservations',this)">🪑 &nbsp;Reservations</a></li>
+      <li><a href="#" onclick="showSection('menu',this)">🍽️ &nbsp;Menu Items</a></li>
+      <li><a href="#" onclick="showSection('customers',this)">👥 &nbsp;Customers</a></li>
+      <li style="margin-top:auto;padding-top:2rem;">
+        <a href="index.html" style="color:var(--text-muted);">🌐 &nbsp;View Website</a>
+      </li>
+      <li><a href="login.html" style="color:var(--danger);">🚪 &nbsp;Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+
+    <!-- HEADER -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
+      <div>
+        <h2 id="section-title" style="color:var(--cream);">Dashboard Overview</h2>
+        <p style="font-size:.85rem;">Tuesday, 9 June 2026</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:.9rem;color:var(--text-muted);">Admin: admin@emberplate.com</span>
+        <div style="width:38px;height:38px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1a1714;">A</div>
+      </div>
+    </div>
+
+    <!-- ======= DASHBOARD SECTION ======= -->
+    <div id="sec-dashboard">
+      <!-- Stats -->
+      <div class="grid stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Today's Orders</div>
+          <div class="stat-value">24</div>
+          <div style="font-size:.8rem;color:var(--success);margin-top:.25rem;">↑ 12% from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Revenue Today</div>
+          <div class="stat-value">RM 1,840</div>
+          <div style="font-size:.8rem;color:var(--success);margin-top:.25rem;">↑ 8% from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Reservations Today</div>
+          <div class="stat-value">9</div>
+          <div style="font-size:.8rem;color:var(--text-muted);margin-top:.25rem;">3 pending confirmation</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Customers</div>
+          <div class="stat-value">187</div>
+          <div style="font-size:.8rem;color:var(--success);margin-top:.25rem;">↑ 5 new today</div>
+        </div>
+      </div>
+
+      <!-- Recent Orders Table -->
+      <div class="card" style="margin-top:0;">
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="color:var(--cream);font-family:var(--font-head);">Recent Orders</h3>
+            <button class="btn btn-outline btn-sm" onclick="showSection('orders',null)">View All →</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Order #</th><th>Customer</th><th>Type</th><th>Items</th><th>Total</th><th>Status</th><th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color:var(--gold);">#EP58231</td>
+                  <td>Ahmad Rizal</td><td>Delivery</td>
+                  <td>Ribeye Steak, Linguine</td>
+                  <td style="color:var(--gold);">RM 137</td>
+                  <td><span class="badge badge-preparing">Preparing</span></td>
+                  <td><button class="btn btn-sm btn-outline" onclick="updateStatus(this,'ready')">Mark Ready</button></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--gold);">#EP58230</td>
+                  <td>Siti Nurhaliza</td><td>Walk-In</td>
+                  <td>Lobster Bisque, Sea Bass</td>
+                  <td style="color:var(--gold);">RM 90</td>
+                  <td><span class="badge badge-ready">Ready</span></td>
+                  <td><button class="btn btn-sm btn-outline" onclick="updateStatus(this,'confirmed')">Mark Done</button></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--gold);">#EP58229</td>
+                  <td>Raj Kumar</td><td>Pickup</td>
+                  <td>Calamari, Lamb Rack</td>
+                  <td style="color:var(--gold);">RM 100</td>
+                  <td><span class="badge badge-confirmed">Completed</span></td>
+                  <td><span style="color:var(--text-muted);font-size:.8rem;">Done</span></td>
+                </tr>
+                <tr>
+                  <td style="color:var(--gold);">#EP58228</td>
+                  <td>Wong Li Ying</td><td>Delivery</td>
+                  <td>Pappardelle, Lava Cake x2</td>
+                  <td style="color:var(--gold);">RM 86</td>
+                  <td><span class="badge badge-pending">Pending</span></td>
+                  <td><button class="btn btn-sm btn-primary" onclick="updateStatus(this,'preparing')">Accept</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= ORDERS SECTION ======= -->
+    <div id="sec-orders" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:1rem;">
+            <h3 style="color:var(--cream);font-family:var(--font-head);">All Orders</h3>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+              <select class="form-control" style="width:140px;padding:.45rem .75rem;">
+                <option>All Types</option><option>Delivery</option><option>Pickup</option><option>Walk-In</option>
+              </select>
+              <select class="form-control" style="width:150px;padding:.45rem .75rem;">
+                <option>All Statuses</option><option>Pending</option><option>Preparing</option><option>Ready</option><option>Completed</option>
+              </select>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Order #</th><th>Customer</th><th>Phone</th><th>Type</th><th>Items</th><th>Total</th><th>Time</th><th>Status</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="color:var(--gold);">#EP58231</td><td>Ahmad Rizal</td><td>012-3456789</td><td>Delivery</td><td>Ribeye, Linguine</td><td style="color:var(--gold);">RM 137</td><td>7:45 PM</td><td><span class="badge badge-preparing">Preparing</span></td><td><button class="btn btn-sm btn-outline" onclick="updateStatus(this,'ready')">Ready</button></td></tr>
+                <tr><td style="color:var(--gold);">#EP58230</td><td>Siti Nurhaliza</td><td>011-9876543</td><td>Walk-In</td><td>Bisque, Sea Bass</td><td style="color:var(--gold);">RM 90</td><td>7:30 PM</td><td><span class="badge badge-ready">Ready</span></td><td><button class="btn btn-sm btn-outline">Done</button></td></tr>
+                <tr><td style="color:var(--gold);">#EP58229</td><td>Raj Kumar</td><td>016-1112233</td><td>Pickup</td><td>Calamari, Lamb Rack</td><td style="color:var(--gold);">RM 100</td><td>7:00 PM</td><td><span class="badge badge-confirmed">Completed</span></td><td>—</td></tr>
+                <tr><td style="color:var(--gold);">#EP58228</td><td>Wong Li Ying</td><td>019-4445566</td><td>Delivery</td><td>Pappardelle, Lava Cake x2</td><td style="color:var(--gold);">RM 86</td><td>6:50 PM</td><td><span class="badge badge-pending">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="updateStatus(this,'preparing')">Accept</button></td></tr>
+                <tr><td style="color:var(--gold);">#EP58227</td><td>Lim Mei Ling</td><td>017-7778899</td><td>Pickup</td><td>Burrata, Herb Chicken</td><td style="color:var(--gold);">RM 73</td><td>6:30 PM</td><td><span class="badge badge-confirmed">Completed</span></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= RESERVATIONS SECTION ======= -->
+    <div id="sec-reservations" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:1rem;">Today's Reservations</h3>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Ref</th><th>Guest</th><th>Phone</th><th>Date</th><th>Time</th><th>Guests</th><th>Occasion</th><th>Status</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="color:var(--gold);">EP-R74821</td><td>Ahmad Rizal</td><td>012-3456789</td><td>09/06/2026</td><td>7:00 PM</td><td>4</td><td>Anniversary</td><td><span class="badge badge-confirmed">Confirmed</span></td><td><button class="btn btn-sm btn-danger" onclick="cancelRes(this)">Cancel</button></td></tr>
+                <tr><td style="color:var(--gold);">EP-R74820</td><td>Priya Sharma</td><td>016-1234567</td><td>09/06/2026</td><td>7:30 PM</td><td>2</td><td>Date Night</td><td><span class="badge badge-pending">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="confirmRes(this)">Confirm</button></td></tr>
+                <tr><td style="color:var(--gold);">EP-R74819</td><td>Tan Chee Keong</td><td>018-9998877</td><td>09/06/2026</td><td>8:00 PM</td><td>8</td><td>Birthday</td><td><span class="badge badge-pending">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="confirmRes(this)">Confirm</button></td></tr>
+                <tr><td style="color:var(--gold);">EP-R74818</td><td>Nurul Ain</td><td>014-6665544</td><td>09/06/2026</td><td>8:30 PM</td><td>3</td><td>—</td><td><span class="badge badge-confirmed">Confirmed</span></td><td><button class="btn btn-sm btn-danger" onclick="cancelRes(this)">Cancel</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= MENU SECTION ======= -->
+    <div id="sec-menu" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;margin-bottom:1rem;">
+            <h3 style="color:var(--cream);font-family:var(--font-head);">Menu Management</h3>
+            <button class="btn btn-primary btn-sm">+ Add Item</button>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Item</th><th>Category</th><th>Price (RM)</th><th>Available</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Burrata &amp; Heirloom Tomato</td><td>Starters</td><td>28.00</td><td><span class="badge badge-confirmed">Yes</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Ember Ribeye Steak</td><td>Grills</td><td>89.00</td><td><span class="badge badge-confirmed">Yes</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Saffron Prawn Linguine</td><td>Pasta</td><td>48.00</td><td><span class="badge badge-confirmed">Yes</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Wild Mushroom Pappardelle</td><td>Pasta</td><td>38.00</td><td><span class="badge badge-pending">No</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Salted Caramel Lava Cake</td><td>Desserts</td><td>24.00</td><td><span class="badge badge-confirmed">Yes</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= CUSTOMERS SECTION ======= -->
+    <div id="sec-customers" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:1rem;">Customer Accounts</h3>
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th><th>Joined</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Ahmad Rizal</td><td>ahmad@email.com</td><td>012-3456789</td><td>12</td><td>Jan 2025</td><td><span class="badge badge-confirmed">Active</span></td></tr>
+              <tr><td>Siti Nurhaliza</td><td>siti@email.com</td><td>011-9876543</td><td>8</td><td>Mar 2025</td><td><span class="badge badge-confirmed">Active</span></td></tr>
+              <tr><td>Raj Kumar</td><td>raj@email.com</td><td>016-1112233</td><td>5</td><td>Apr 2025</td><td><span class="badge badge-confirmed">Active</span></td></tr>
+              <tr><td>Wong Li Ying</td><td>wly@email.com</td><td>019-4445566</td><td>3</td><td>May 2025</td><td><span class="badge badge-confirmed">Active</span></td></tr>
+              <tr><td>Lim Mei Ling</td><td>lml@email.com</td><td>017-7778899</td><td>1</td><td>Jun 2026</td><td><span class="badge badge-pending">New</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+const sections = ['dashboard','orders','reservations','menu','customers'];
+const titles   = {dashboard:'Dashboard Overview',orders:'Orders Management',reservations:'Reservations',menu:'Menu Management',customers:'Customers'};
+
+function showSection(id, linkEl) {
+  sections.forEach(s => {
+    document.getElementById('sec-' + s).style.display = s === id ? '' : 'none';
+  });
+  document.getElementById('section-title').textContent = titles[id];
+  if (linkEl) {
+    document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+    linkEl.classList.add('active');
+  }
+}
+
+function updateStatus(btn, newStatus) {
+  const row = btn.closest('tr');
+  const badge = row.querySelector('.badge');
+  const classes = {pending:'badge-pending',preparing:'badge-preparing',ready:'badge-ready',confirmed:'badge-confirmed',cancelled:'badge-cancelled'};
+  const labels  = {pending:'Pending',preparing:'Preparing',ready:'Ready',confirmed:'Completed',cancelled:'Cancelled'};
+  Object.values(classes).forEach(c => badge.classList.remove(c));
+  badge.classList.add(classes[newStatus]);
+  badge.textContent = labels[newStatus];
+  btn.remove();
+}
+
+function confirmRes(btn) {
+  const row = btn.closest('tr');
+  const badge = row.querySelector('.badge');
+  badge.className = 'badge badge-confirmed';
+  badge.textContent = 'Confirmed';
+  btn.outerHTML = '<button class="btn btn-sm btn-danger" onclick="cancelRes(this)">Cancel</button>';
+}
+
+function cancelRes(btn) {
+  const row = btn.closest('tr');
+  const badge = row.querySelector('.badge');
+  badge.className = 'badge badge-cancelled';
+  badge.textContent = 'Cancelled';
+  btn.remove();
+}
+</script>
+</body>
+</html>

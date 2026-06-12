@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve a Table — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html">Order Online</a></li>
+      <li><a href="reservations.html" class="active">Reserve</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="btn btn-outline">Login</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section style="background:var(--bg2);padding:4rem 0 2rem;text-align:center;border-bottom:1px solid rgba(201,150,58,0.1);">
+  <div class="container">
+    <h1 style="color:var(--cream);">Reserve a Table</h1>
+    <p style="max-width:460px;margin:.75rem auto 0;">Book your preferred table in seconds. We'll confirm within 30 minutes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+
+    <!-- FORM -->
+    <div>
+      <div id="res-success" class="alert alert-success"></div>
+      <div id="res-error"   class="alert alert-error"></div>
+
+      <form id="reservationForm" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-fname">First Name *</label>
+            <input type="text" id="r-fname" class="form-control" placeholder="First name" />
+            <span class="error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-lname">Last Name *</label>
+            <input type="text" id="r-lname" class="form-control" placeholder="Last name" />
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="r-email">Email Address *</label>
+          <input type="email" id="r-email" class="form-control" placeholder="your@email.com" />
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="r-phone">Phone Number *</label>
+          <input type="tel" id="r-phone" class="form-control" placeholder="e.g. 0123456789" />
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-date">Date *</label>
+            <input type="date" id="r-date" class="form-control" />
+            <span class="error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-time">Time *</label>
+            <select id="r-time" class="form-control">
+              <option value="">Select time</option>
+              <option>11:00 AM</option><option>11:30 AM</option>
+              <option>12:00 PM</option><option>12:30 PM</option>
+              <option>1:00 PM</option><option>1:30 PM</option>
+              <option>6:00 PM</option><option>6:30 PM</option>
+              <option>7:00 PM</option><option>7:30 PM</option>
+              <option>8:00 PM</option><option>8:30 PM</option>
+              <option>9:00 PM</option>
+            </select>
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-guests">Number of Guests *</label>
+            <select id="r-guests" class="form-control">
+              <option value="">Select guests</option>
+              <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+              <option>4 Guests</option><option>5 Guests</option><option>6 Guests</option>
+              <option>7–10 Guests (private room)</option><option>10+ Guests (contact us)</option>
+            </select>
+            <span class="error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-occasion">Occasion</label>
+            <select id="r-occasion" class="form-control">
+              <option value="">None / General Dining</option>
+              <option>Birthday</option><option>Anniversary</option>
+              <option>Business Dinner</option><option>Date Night</option>
+              <option>Family Gathering</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="r-seating">Seating Preference</label>
+          <select id="r-seating" class="form-control">
+            <option value="">No preference</option>
+            <option>Indoor (Air-conditioned)</option>
+            <option>Outdoor (Al Fresco)</option>
+            <option>Private Dining Room</option>
+            <option>Bar Seating</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="r-requests">Special Requests / Dietary Notes</label>
+          <textarea id="r-requests" class="form-control" placeholder="Allergies, dietary restrictions, high chair needed, etc." rows="3"></textarea>
+        </div>
+
+        <!-- Terms checkbox -->
+        <div class="form-group" style="display:flex;gap:.75rem;align-items:flex-start;">
+          <input type="checkbox" id="r-terms" style="width:18px;height:18px;margin-top:.2rem;accent-color:var(--gold);" />
+          <label for="r-terms" style="font-size:.88rem;color:var(--text-muted);">
+            I agree to the <a href="#">reservation policy</a>. Cancellations must be made at least 24 hours in advance.
+          </label>
+        </div>
+        <span class="error-msg" id="terms-err"></span>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem;">Confirm Reservation →</button>
+      </form>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div>
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-body">
+          <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:1rem;">📋 Reservation Policy</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;">
+            <li style="display:flex;gap:.75rem;"><span style="color:var(--gold);">⏰</span><span style="color:var(--text-muted);font-size:.9rem;">Reservations held for 15 minutes. Please arrive on time.</span></li>
+            <li style="display:flex;gap:.75rem;"><span style="color:var(--gold);">❌</span><span style="color:var(--text-muted);font-size:.9rem;">Cancel at least 24 hours before to avoid a RM 20 no-show fee.</span></li>
+            <li style="display:flex;gap:.75rem;"><span style="color:var(--gold);">👥</span><span style="color:var(--text-muted);font-size:.9rem;">Groups of 7+ require a private dining booking.</span></li>
+            <li style="display:flex;gap:.75rem;"><span style="color:var(--gold);">✅</span><span style="color:var(--text-muted);font-size:.9rem;">Confirmation sent via email within 30 minutes of booking.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:1rem;">📍 Find Us</h3>
+          <p style="font-size:.9rem;margin-bottom:.75rem;">Jalan SS2/24, SS2, 47300 Petaling Jaya, Selangor</p>
+          <p style="font-size:.9rem;margin-bottom:.75rem;">📞 <a href="tel:+60312345678">+603-1234-5678</a></p>
+          <p style="font-size:.9rem;">✉️ <a href="mailto:reservations@emberplate.com">reservations@emberplate.com</a></p>
+          <div style="margin-top:1.25rem;border-radius:6px;overflow:hidden;height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;">
+            <span style="color:var(--text-muted);font-size:.9rem;">📍 Map — embed Google Maps here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom"><span>© 2024 Ember &amp; Plate.</span><span><a href="index.html">Home</a></span></div></div></footer>
+
+<script src="js/main.js"></script>
+<script>
+// Set min date to today
+const dateInput = document.getElementById('r-date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+document.getElementById('reservationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+
+  valid &= validateField(document.getElementById('r-fname'),  {required:true, minLen:2});
+  valid &= validateField(document.getElementById('r-lname'),  {required:true, minLen:2});
+  valid &= validateField(document.getElementById('r-email'),  {required:true, email:true});
+  valid &= validateField(document.getElementById('r-phone'),  {required:true, phone:true});
+  valid &= validateField(document.getElementById('r-date'),   {required:true, requiredMsg:'Please select a date.'});
+  valid &= validateField(document.getElementById('r-time'),   {required:true, requiredMsg:'Please select a time.'});
+  valid &= validateField(document.getElementById('r-guests'), {required:true, requiredMsg:'Please select number of guests.'});
+
+  // Terms checkbox
+  const terms = document.getElementById('r-terms');
+  const termsErr = document.getElementById('terms-err');
+  if (!terms.checked) {
+    termsErr.textContent = 'You must agree to the reservation policy.';
+    termsErr.classList.add('show');
+    valid = false;
+  } else {
+    termsErr.classList.remove('show');
+  }
+
+  // Future date check
+  const selectedDate = new Date(document.getElementById('r-date').value);
+  if (document.getElementById('r-date').value && selectedDate < new Date(today)) {
+    showError(document.getElementById('r-date'), 'Please select a future date.');
+    valid = false;
+  }
+
+  if (valid) {
+    const ref = 'EP-R' + Math.floor(10000 + Math.random() * 90000);
+    showAlert('res-success', 'success', `✅ Reservation confirmed! Reference: ${ref}. Check your email for confirmation.`);
+    document.getElementById('res-success').scrollIntoView({behavior:'smooth'});
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>

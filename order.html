@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Online — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html" class="active">Order Online</a></li>
+      <li><a href="reservations.html">Reserve</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="btn btn-outline">Login</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section style="background:var(--bg2);padding:4rem 0 2rem;text-align:center;border-bottom:1px solid rgba(201,150,58,0.1);">
+  <div class="container">
+    <h1 style="color:var(--cream);">Place Your Order</h1>
+    <p style="max-width:480px;margin:.75rem auto 0;">Walk-in or online — fill in your details and we'll take care of the rest.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:2.5rem;align-items:start;">
+
+      <!-- ORDER FORM -->
+      <div>
+        <!-- Order Type Tabs -->
+        <div class="tabs" data-tabs>
+          <button class="tab-btn active" data-tab="tab-delivery">🛵 Delivery</button>
+          <button class="tab-btn" data-tab="tab-pickup">🏃 Pickup</button>
+          <button class="tab-btn" data-tab="tab-walkin">🪑 Walk-In</button>
+        </div>
+
+        <div id="tab-delivery" class="tab-content active">
+          <div class="form-box" style="max-width:100%;">
+            <div id="order-alert" class="alert"></div>
+            <div id="order-success" class="alert alert-success" style="display:none;"></div>
+
+            <h3 class="form-title">Delivery Details</h3>
+            <p class="form-subtitle">We deliver within 10km of our restaurant.</p>
+
+            <form id="orderForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="o-name">Full Name *</label>
+                  <input type="text" id="o-name" class="form-control" placeholder="Your full name" />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="o-phone">Phone Number *</label>
+                  <input type="tel" id="o-phone" class="form-control" placeholder="e.g. 0123456789" />
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="o-email">Email Address *</label>
+                <input type="email" id="o-email" class="form-control" placeholder="your@email.com" />
+                <span class="error-msg"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="o-address">Delivery Address *</label>
+                <textarea id="o-address" class="form-control" placeholder="Full delivery address including postcode" rows="3"></textarea>
+                <span class="error-msg"></span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="o-date">Delivery Date *</label>
+                  <input type="date" id="o-date" class="form-control" />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="o-time">Preferred Time *</label>
+                  <select id="o-time" class="form-control">
+                    <option value="">Select time slot</option>
+                    <option>11:30 AM – 12:30 PM</option>
+                    <option>12:30 PM – 1:30 PM</option>
+                    <option>6:00 PM – 7:00 PM</option>
+                    <option>7:00 PM – 8:00 PM</option>
+                    <option>8:00 PM – 9:00 PM</option>
+                  </select>
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="o-payment">Payment Method *</label>
+                <select id="o-payment" class="form-control">
+                  <option value="">Select payment method</option>
+                  <option>Cash on Delivery</option>
+                  <option>Online Banking (FPX)</option>
+                  <option>Credit/Debit Card</option>
+                  <option>DuitNow QR</option>
+                  <option>GrabPay</option>
+                  <option>Touch 'n Go eWallet</option>
+                </select>
+                <span class="error-msg"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="o-notes">Special Instructions</label>
+                <textarea id="o-notes" class="form-control" placeholder="Allergies, special requests, cooking preferences..." rows="3"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Place Order →</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="tab-pickup" class="tab-content">
+          <div class="form-box" style="max-width:100%;">
+            <h3 class="form-title">Pickup Order</h3>
+            <p class="form-subtitle">Order ahead and collect at the restaurant.</p>
+            <form id="pickupForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="p-name">Full Name *</label>
+                  <input type="text" id="p-name" class="form-control" placeholder="Your full name" />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="p-phone">Phone *</label>
+                  <input type="tel" id="p-phone" class="form-control" placeholder="0123456789" />
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="p-email">Email *</label>
+                <input type="email" id="p-email" class="form-control" placeholder="your@email.com" />
+                <span class="error-msg"></span>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="p-date">Pickup Date *</label>
+                  <input type="date" id="p-date" class="form-control" />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="p-time">Pickup Time *</label>
+                  <select id="p-time" class="form-control">
+                    <option value="">Select time</option>
+                    <option>12:00 PM</option><option>12:30 PM</option>
+                    <option>1:00 PM</option><option>1:30 PM</option>
+                    <option>6:30 PM</option><option>7:00 PM</option>
+                    <option>7:30 PM</option><option>8:00 PM</option>
+                  </select>
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="p-payment">Payment *</label>
+                <select id="p-payment" class="form-control">
+                  <option value="">Select payment</option>
+                  <option>Pay at Counter</option><option>Online Banking (FPX)</option>
+                  <option>DuitNow QR</option><option>Credit/Debit Card</option>
+                </select>
+                <span class="error-msg"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Confirm Pickup Order →</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="tab-walkin" class="tab-content">
+          <div class="form-box" style="max-width:100%;text-align:center;">
+            <div style="font-size:4rem;margin-bottom:1rem;">🪑</div>
+            <h3 class="form-title">Walk-In Welcome!</h3>
+            <p style="margin-bottom:1.5rem;">No need to pre-order. Simply walk in and our staff will seat you and take your order. Want to guarantee a table?</p>
+            <a href="reservations.html" class="btn btn-primary">Reserve a Table</a>
+            <div class="divider"><span>or browse the menu first</span></div>
+            <a href="menu.html" class="btn btn-outline">View Menu</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ORDER SUMMARY SIDEBAR -->
+      <div class="order-summary">
+        <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:1rem;">🛒 Your Cart</h3>
+        <div id="cart-items">
+          <p style="text-align:center;padding:2rem 0;color:var(--text-muted);">Your cart is empty.<br><a href="menu.html">Browse our menu →</a></p>
+        </div>
+        <div class="order-total" id="cart-total-row" style="display:none;">
+          <span>Subtotal</span>
+          <span id="cart-total">RM 0.00</span>
+        </div>
+        <div style="margin-top:.5rem;display:flex;justify-content:space-between;color:var(--text-muted);font-size:.85rem;" id="delivery-fee-row" style="display:none;">
+          <span>Delivery Fee</span><span>RM 5.00</span>
+        </div>
+        <button id="clear-cart" class="btn btn-sm" style="margin-top:1rem;background:transparent;border:1px solid rgba(192,57,43,0.4);color:var(--danger);width:100%;display:none;" onclick="Cart.clear();renderCart();">Clear Cart</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom"><span>© 2024 Ember &amp; Plate.</span><span><a href="index.html">Home</a></span></div></div></footer>
+
+<script src="js/main.js"></script>
+<script>
+// ---- Render cart sidebar ----
+function renderCart() {
+  const items = Cart.get();
+  const container = document.getElementById('cart-items');
+  const totalRow = document.getElementById('cart-total-row');
+  const clearBtn = document.getElementById('clear-cart');
+  const feeRow   = document.getElementById('delivery-fee-row');
+
+  if (!items.length) {
+    container.innerHTML = '<p style="text-align:center;padding:2rem 0;color:var(--text-muted);">Your cart is empty.<br><a href="menu.html">Browse our menu →</a></p>';
+    totalRow.style.display = 'none';
+    clearBtn.style.display = 'none';
+    if (feeRow) feeRow.style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = items.map(i => `
+    <div class="order-item">
+      <div>
+        <div style="color:var(--cream);font-size:.9rem;">${i.name}</div>
+        <div class="qty-control" style="margin-top:.3rem;">
+          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+          <span class="qty-display">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div style="color:var(--gold);font-weight:700;">RM ${(i.price*i.qty).toFixed(2)}</div>
+        <button onclick="Cart.remove(${i.id});renderCart();" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:.8rem;">Remove</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('cart-total').textContent = 'RM ' + Cart.total();
+  totalRow.style.display = 'flex';
+  clearBtn.style.display = 'block';
+  if (feeRow) feeRow.style.display = 'flex';
+}
+
+function changeQty(id, delta) {
+  const items = Cart.get();
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  Cart.save(items);
+  Cart.updateBadge();
+  renderCart();
+}
+
+renderCart();
+
+// ---- Validate Delivery Form ----
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  valid &= validateField(document.getElementById('o-name'),    {required:true, minLen:2});
+  valid &= validateField(document.getElementById('o-phone'),   {required:true, phone:true});
+  valid &= validateField(document.getElementById('o-email'),   {required:true, email:true});
+  valid &= validateField(document.getElementById('o-address'), {required:true, minLen:10, requiredMsg:'Please enter your full address.'});
+  valid &= validateField(document.getElementById('o-date'),    {required:true, requiredMsg:'Please select a delivery date.'});
+  valid &= validateField(document.getElementById('o-time'),    {required:true, requiredMsg:'Please select a time slot.'});
+  valid &= validateField(document.getElementById('o-payment'), {required:true, requiredMsg:'Please select a payment method.'});
+
+  if (!Cart.get().length) {
+    showAlert('order-alert','error','Your cart is empty. Please add items from the menu first.');
+    valid = false;
+  }
+
+  if (valid) {
+    const success = document.getElementById('order-success');
+    success.textContent = '✅ Order placed successfully! Your order reference is #EP' + Math.floor(10000+Math.random()*90000) + '. We\'ll contact you shortly.';
+    success.style.display = 'block';
+    this.reset();
+    Cart.clear();
+    renderCart();
+    success.scrollIntoView({behavior:'smooth'});
+  }
+});
+
+// ---- Validate Pickup Form ----
+document.getElementById('pickupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  valid &= validateField(document.getElementById('p-name'),    {required:true, minLen:2});
+  valid &= validateField(document.getElementById('p-phone'),   {required:true, phone:true});
+  valid &= validateField(document.getElementById('p-email'),   {required:true, email:true});
+  valid &= validateField(document.getElementById('p-date'),    {required:true, requiredMsg:'Select a pickup date.'});
+  valid &= validateField(document.getElementById('p-time'),    {required:true, requiredMsg:'Select a pickup time.'});
+  valid &= validateField(document.getElementById('p-payment'), {required:true, requiredMsg:'Select payment method.'});
+
+  if (valid) {
+    alert('✅ Pickup order confirmed! We\'ll prepare your order at the selected time.');
+    this.reset();
+    Cart.clear();
+    renderCart();
+  }
+});
+</script>
+</body>
+</html>

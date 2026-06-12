@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Register — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html">Order Online</a></li>
+      <li><a href="reservations.html">Reserve</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="section" style="min-height:80vh;display:flex;align-items:center;">
+  <div class="container" style="max-width:520px;margin:0 auto;width:100%;">
+
+    <!-- Toggle Tabs -->
+    <div style="display:flex;background:var(--bg2);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;border:1px solid rgba(201,150,58,0.1);">
+      <button id="tab-login-btn" class="tab-toggle active" onclick="switchTab('login')"
+        style="flex:1;padding:.9rem;background:var(--gold);color:#1a1714;font-weight:700;border:none;cursor:pointer;font-family:var(--font-body);font-size:.95rem;transition:all .3s;">
+        Login
+      </button>
+      <button id="tab-register-btn" class="tab-toggle" onclick="switchTab('register')"
+        style="flex:1;padding:.9rem;background:transparent;color:var(--text-muted);font-weight:700;border:none;cursor:pointer;font-family:var(--font-body);font-size:.95rem;transition:all .3s;">
+        Create Account
+      </button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="pane-login" class="form-box" style="max-width:100%;">
+      <h2 class="form-title">Welcome Back</h2>
+      <p class="form-subtitle">Sign in to manage your orders and reservations.</p>
+
+      <div id="login-success" class="alert alert-success"></div>
+      <div id="login-error"   class="alert alert-error"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="l-email">Email Address *</label>
+          <input type="email" id="l-email" class="form-control" placeholder="your@email.com" />
+          <span class="error-msg"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="l-password">Password *</label>
+          <div style="position:relative;">
+            <input type="password" id="l-password" class="form-control" placeholder="Your password" />
+            <button type="button" onclick="togglePass('l-password',this)"
+              style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:.85rem;">Show</button>
+          </div>
+          <span class="error-msg"></span>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+          <label style="display:flex;gap:.5rem;align-items:center;font-size:.88rem;color:var(--text-muted);cursor:pointer;">
+            <input type="checkbox" style="accent-color:var(--gold);" /> Remember me
+          </label>
+          <a href="#" style="font-size:.88rem;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Sign In →</button>
+
+        <div class="divider"><span>or sign in as</span></div>
+        <a href="admin.html" class="btn btn-outline btn-block">Admin Dashboard</a>
+      </form>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="pane-register" class="form-box" style="max-width:100%;display:none;">
+      <h2 class="form-title">Create Account</h2>
+      <p class="form-subtitle">Join Ember &amp; Plate for faster orders and exclusive deals.</p>
+
+      <div id="reg-success" class="alert alert-success"></div>
+      <div id="reg-error"   class="alert alert-error"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="rg-fname">First Name *</label>
+            <input type="text" id="rg-fname" class="form-control" placeholder="First name" />
+            <span class="error-msg"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rg-lname">Last Name *</label>
+            <input type="text" id="rg-lname" class="form-control" placeholder="Last name" />
+            <span class="error-msg"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rg-email">Email Address *</label>
+          <input type="email" id="rg-email" class="form-control" placeholder="your@email.com" />
+          <span class="error-msg"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rg-phone">Phone Number *</label>
+          <input type="tel" id="rg-phone" class="form-control" placeholder="e.g. 0123456789" />
+          <span class="error-msg"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rg-pass">Password *</label>
+          <div style="position:relative;">
+            <input type="password" id="rg-pass" class="form-control" placeholder="Min. 8 characters" />
+            <button type="button" onclick="togglePass('rg-pass',this)"
+              style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:.85rem;">Show</button>
+          </div>
+          <span class="error-msg"></span>
+          <!-- Password strength bar -->
+          <div style="margin-top:.5rem;">
+            <div style="height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;">
+              <div id="strength-bar" style="height:100%;width:0;transition:width .3s,background .3s;border-radius:2px;"></div>
+            </div>
+            <span id="strength-label" style="font-size:.78rem;color:var(--text-muted);"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rg-confirm">Confirm Password *</label>
+          <input type="password" id="rg-confirm" class="form-control" placeholder="Repeat password" />
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-group" style="display:flex;gap:.75rem;align-items:flex-start;">
+          <input type="checkbox" id="rg-terms" style="width:18px;height:18px;margin-top:.2rem;accent-color:var(--gold);" />
+          <label for="rg-terms" style="font-size:.88rem;color:var(--text-muted);">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          </label>
+        </div>
+        <span class="error-msg" id="rg-terms-err"></span>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem;">Create Account →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom"><span>© 2024 Ember &amp; Plate.</span><span><a href="index.html">Home</a></span></div></div></footer>
+
+<script src="js/main.js"></script>
+<script>
+// ---- Tab switch ----
+function switchTab(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('pane-login').style.display    = isLogin ? '' : 'none';
+  document.getElementById('pane-register').style.display = isLogin ? 'none' : '';
+  document.getElementById('tab-login-btn').style.background    = isLogin ? 'var(--gold)' : 'transparent';
+  document.getElementById('tab-login-btn').style.color         = isLogin ? '#1a1714' : 'var(--text-muted)';
+  document.getElementById('tab-register-btn').style.background = isLogin ? 'transparent' : 'var(--gold)';
+  document.getElementById('tab-register-btn').style.color      = isLogin ? 'var(--text-muted)' : '#1a1714';
+}
+
+// ---- Toggle password ----
+function togglePass(id, btn) {
+  const el = document.getElementById(id);
+  const hidden = el.type === 'password';
+  el.type = hidden ? 'text' : 'password';
+  btn.textContent = hidden ? 'Hide' : 'Show';
+}
+
+// ---- Password strength ----
+document.getElementById('rg-pass').addEventListener('input', function() {
+  const v = this.value;
+  const bar = document.getElementById('strength-bar');
+  const lbl = document.getElementById('strength-label');
+  let score = 0;
+  if (v.length >= 8) score++;
+  if (/[A-Z]/.test(v)) score++;
+  if (/[0-9]/.test(v)) score++;
+  if (/[^A-Za-z0-9]/.test(v)) score++;
+  const colors = ['#c0392b','#e67e22','#f1c40f','#27ae60'];
+  const labels = ['Weak','Fair','Good','Strong'];
+  bar.style.width = (score * 25) + '%';
+  bar.style.background = colors[score-1] || '#c0392b';
+  lbl.textContent = v.length ? labels[score-1] || 'Weak' : '';
+});
+
+// ---- Login validation ----
+// Demo credentials: admin@emberplate.com / Admin123!
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  valid &= validateField(document.getElementById('l-email'),    {required:true, email:true});
+  valid &= validateField(document.getElementById('l-password'), {required:true, minLen:6});
+  if (valid) {
+    const email = document.getElementById('l-email').value.trim();
+    const pass  = document.getElementById('l-password').value;
+    // Demo check
+    if (email === 'admin@emberplate.com' && pass === 'Admin123!') {
+      window.location.href = 'admin.html';
+    } else {
+      showAlert('login-error','error','Invalid email or password. Try: admin@emberplate.com / Admin123!');
+    }
+  }
+});
+
+// ---- Register validation ----
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  valid &= validateField(document.getElementById('rg-fname'),   {required:true, minLen:2});
+  valid &= validateField(document.getElementById('rg-lname'),   {required:true, minLen:2});
+  valid &= validateField(document.getElementById('rg-email'),   {required:true, email:true});
+  valid &= validateField(document.getElementById('rg-phone'),   {required:true, phone:true});
+  valid &= validateField(document.getElementById('rg-pass'),    {required:true, minLen:8, requiredMsg:'Password must be at least 8 characters.'});
+  valid &= validateField(document.getElementById('rg-confirm'), {required:true, match:'#rg-pass', matchMsg:'Passwords do not match.'});
+
+  const terms = document.getElementById('rg-terms');
+  const termsErr = document.getElementById('rg-terms-err');
+  if (!terms.checked) {
+    termsErr.textContent = 'You must agree to the terms.';
+    termsErr.classList.add('show');
+    valid = false;
+  } else {
+    termsErr.classList.remove('show');
+  }
+
+  if (valid) {
+    showAlert('reg-success','success','✅ Account created! You can now log in.');
+    setTimeout(() => switchTab('login'), 1500);
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>

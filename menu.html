@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Ember &amp; Plate</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="order.html">Order Online</a></li>
+      <li><a href="reservations.html">Reserve</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html" class="btn btn-primary" style="position:relative;">🛒 Cart <span id="cart-badge" style="background:var(--danger);color:#fff;border-radius:50%;padding:1px 6px;font-size:.72rem;margin-left:.3rem;">0</span></a></li>
+      <li><a href="login.html" class="btn btn-outline">Login</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section style="background:var(--bg2);padding:4rem 0 2rem;text-align:center;border-bottom:1px solid rgba(201,150,58,0.1);">
+  <div class="container">
+    <h1 class="fade-up fade-up-1" style="color:var(--cream);">Our Menu</h1>
+    <p class="fade-up fade-up-2" style="max-width:500px;margin:.75rem auto 0;">Crafted fresh daily. All prices in Malaysian Ringgit (RM).</p>
+  </div>
+</section>
+
+<!-- MENU SECTION -->
+<section class="section">
+  <div class="container">
+
+    <!-- Filter Buttons -->
+    <div class="menu-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="starters">Starters</button>
+      <button class="filter-btn" data-filter="mains">Mains</button>
+      <button class="filter-btn" data-filter="pasta">Pasta</button>
+      <button class="filter-btn" data-filter="grills">Grills</button>
+      <button class="filter-btn" data-filter="desserts">Desserts</button>
+      <button class="filter-btn" data-filter="drinks">Drinks</button>
+    </div>
+
+    <!-- Menu Cards -->
+    <div class="grid menu-grid" id="menuGrid">
+
+      <!-- STARTERS -->
+      <div class="card menu-card" data-category="starters">
+        <div class="card-emoji">🥗</div>
+        <div class="card-body">
+          <span class="card-badge">Starters</span>
+          <div class="card-title">Burrata &amp; Heirloom Tomato</div>
+          <p class="card-desc">Creamy burrata, heirloom tomatoes, fresh basil oil, sea salt flakes.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 28</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:1,name:'Burrata & Heirloom Tomato',price:28});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="starters">
+        <div class="card-emoji">🦑</div>
+        <div class="card-body">
+          <span class="card-badge">Starters</span>
+          <div class="card-title">Crispy Calamari</div>
+          <p class="card-desc">Lightly battered squid rings, lemon aioli, smoked paprika dust.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 24</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:2,name:'Crispy Calamari',price:24});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="starters">
+        <div class="card-emoji">🍲</div>
+        <div class="card-body">
+          <span class="card-badge">Starters</span>
+          <div class="card-title">Lobster Bisque</div>
+          <p class="card-desc">Rich, creamy bisque with claw meat, cognac cream &amp; chive oil.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 32</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:3,name:'Lobster Bisque',price:32});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAINS -->
+      <div class="card menu-card" data-category="mains">
+        <div class="card-emoji">🍗</div>
+        <div class="card-body">
+          <span class="card-badge">Mains</span>
+          <div class="card-title">Herb Roasted Chicken</div>
+          <p class="card-desc">Half roasted free-range chicken, rosemary jus, garlic mash &amp; greens.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 45</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:4,name:'Herb Roasted Chicken',price:45});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="mains">
+        <div class="card-emoji">🐟</div>
+        <div class="card-body">
+          <span class="card-badge">Mains</span>
+          <div class="card-title">Pan-Seared Sea Bass</div>
+          <p class="card-desc">Crispy skin sea bass, caper butter sauce, wilted spinach &amp; new potatoes.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 58</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:5,name:'Pan-Seared Sea Bass',price:58});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRILLS -->
+      <div class="card menu-card" data-category="grills">
+        <div class="card-emoji">🥩</div>
+        <div class="card-body">
+          <span class="card-badge">Grills</span>
+          <div class="card-title">Ember Ribeye Steak</div>
+          <p class="card-desc">250g Black Angus ribeye, truffle butter, hand-cut fries &amp; seasonal greens.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 89</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:6,name:'Ember Ribeye Steak',price:89});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="grills">
+        <div class="card-emoji">🍖</div>
+        <div class="card-body">
+          <span class="card-badge">Grills</span>
+          <div class="card-title">BBQ Lamb Rack</div>
+          <p class="card-desc">3-bone lamb rack, herb crust, red wine reduction, roasted root vegetables.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 76</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:7,name:'BBQ Lamb Rack',price:76});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASTA -->
+      <div class="card menu-card" data-category="pasta">
+        <div class="card-emoji">🍝</div>
+        <div class="card-body">
+          <span class="card-badge">Pasta</span>
+          <div class="card-title">Saffron Prawn Linguine</div>
+          <p class="card-desc">Tiger prawns, saffron cream, cherry tomatoes, toasted breadcrumbs.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 48</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:8,name:'Saffron Prawn Linguine',price:48});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="pasta">
+        <div class="card-emoji">🧆</div>
+        <div class="card-body">
+          <span class="card-badge">Pasta</span>
+          <div class="card-title">Wild Mushroom Pappardelle</div>
+          <p class="card-desc">Hand-cut ribbon pasta, forest mushrooms, truffle oil, parmesan cream.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 38</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:9,name:'Wild Mushroom Pappardelle',price:38});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="card menu-card" data-category="desserts">
+        <div class="card-emoji">🍰</div>
+        <div class="card-body">
+          <span class="card-badge">Desserts</span>
+          <div class="card-title">Salted Caramel Lava Cake</div>
+          <p class="card-desc">Dark chocolate cake, molten salted caramel, vanilla bean ice cream.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 24</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:10,name:'Salted Caramel Lava Cake',price:24});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card menu-card" data-category="desserts">
+        <div class="card-emoji">🍮</div>
+        <div class="card-body">
+          <span class="card-badge">Desserts</span>
+          <div class="card-title">Crème Brûlée</div>
+          <p class="card-desc">Classic vanilla bean custard, caramelised sugar crust, fresh berries.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 19</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:11,name:'Crème Brûlée',price:19});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRINKS -->
+      <div class="card menu-card" data-category="drinks">
+        <div class="card-emoji">🍹</div>
+        <div class="card-body">
+          <span class="card-badge">Drinks</span>
+          <div class="card-title">Ember Signature Mocktail</div>
+          <p class="card-desc">Passion fruit, lychee, ginger beer, fresh mint &amp; lime.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 16</div>
+            <button class="btn btn-primary btn-sm" onclick="Cart.add({id:12,name:'Ember Signature Mocktail',price:16});showAlert('cart-toast','success','Added to cart!');Cart.updateBadge();">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Cart Toast -->
+    <div id="cart-toast" class="alert" style="position:fixed;bottom:2rem;right:2rem;max-width:280px;z-index:9999;"></div>
+
+    <div class="center" style="margin-top:3rem;">
+      <a href="order.html" class="btn btn-primary">Proceed to Order →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2024 Ember &amp; Plate. All rights reserved.</span>
+      <span><a href="index.html">Home</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

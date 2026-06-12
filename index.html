@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ember &amp; Plate — Fine Casual Dining</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">Ember <span>&amp; Plate</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html">Order Online</a></li>
+      <li><a href="reservations.html">Reserve</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="btn btn-outline">Login</a></li>
+    </ul>
+    <div class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-badge fade-up fade-up-1">Est. 2018 · Petaling Jaya</div>
+    <h1 class="fade-up fade-up-2">Where Every Meal<br>Becomes a <em>Memory</em></h1>
+    <p class="fade-up fade-up-3">Experience elevated comfort food crafted with locally sourced ingredients. Walk in or order online — we cook with the same passion either way.</p>
+    <div class="hero-btns fade-up fade-up-4">
+      <a href="menu.html" class="btn btn-primary">Explore Our Menu</a>
+      <a href="reservations.html" class="btn btn-outline">Reserve a Table</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="section-title"><h2>Why Choose Ember &amp; Plate?</h2></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;">
+
+      <div class="card fade-up fade-up-1">
+        <div class="card-emoji">🔥</div>
+        <div class="card-body">
+          <div class="card-title">Flame-Crafted Dishes</div>
+          <p class="card-desc">Every dish is prepared fresh in our open kitchen using traditional grilling methods over live fire.</p>
+        </div>
+      </div>
+
+      <div class="card fade-up fade-up-2">
+        <div class="card-emoji">🛵</div>
+        <div class="card-body">
+          <div class="card-title">Fast Online Orders</div>
+          <p class="card-desc">Order from our full menu online — ready for pickup or delivered to your doorstep within 45 minutes.</p>
+        </div>
+      </div>
+
+      <div class="card fade-up fade-up-3">
+        <div class="card-emoji">🪑</div>
+        <div class="card-body">
+          <div class="card-title">Easy Reservations</div>
+          <p class="card-desc">Book your table in seconds. Private dining rooms available for special occasions and corporate events.</p>
+        </div>
+      </div>
+
+      <div class="card fade-up fade-up-4">
+        <div class="card-emoji">🌿</div>
+        <div class="card-body">
+          <div class="card-title">Farm-to-Table</div>
+          <p class="card-desc">We partner with local farms to bring you the freshest seasonal ingredients on your plate.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED MENU -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="section-title"><h2>Chef's Favourites</h2><p>Handpicked by our head chef — dishes that define us.</p></div>
+    <div class="grid menu-grid">
+
+      <div class="card">
+        <div class="card-emoji" style="font-size:4rem;">🥩</div>
+        <div class="card-body">
+          <span class="card-badge">Mains</span>
+          <div class="card-title">Ember Ribeye Steak</div>
+          <p class="card-desc">250g Black Angus ribeye, truffle butter, hand-cut fries & seasonal greens.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 89</div>
+            <a href="order.html" class="btn btn-primary btn-sm">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji" style="font-size:4rem;">🍝</div>
+        <div class="card-body">
+          <span class="card-badge">Pasta</span>
+          <div class="card-title">Saffron Prawn Linguine</div>
+          <p class="card-desc">Tiger prawns, saffron cream, cherry tomatoes, toasted breadcrumbs.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 48</div>
+            <a href="order.html" class="btn btn-primary btn-sm">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-emoji" style="font-size:4rem;">🍰</div>
+        <div class="card-body">
+          <span class="card-badge">Desserts</span>
+          <div class="card-title">Salted Caramel Lava Cake</div>
+          <p class="card-desc">Warm dark chocolate cake, molten salted caramel centre, vanilla bean ice cream.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-price">RM 24</div>
+            <a href="order.html" class="btn btn-primary btn-sm">Order</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="center" style="margin-top:2rem;">
+      <a href="menu.html" class="btn btn-outline">View Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- OPENING HOURS + CTA -->
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="section-title" style="text-align:left;"><h2>Opening Hours</h2></div>
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:.6rem 0;color:var(--cream);font-weight:700;">Monday – Thursday</td><td style="color:var(--gold);">11:00 AM – 10:00 PM</td></tr>
+        <tr><td style="padding:.6rem 0;color:var(--cream);font-weight:700;">Friday – Saturday</td><td style="color:var(--gold);">11:00 AM – 11:30 PM</td></tr>
+        <tr><td style="padding:.6rem 0;color:var(--cream);font-weight:700;">Sunday</td><td style="color:var(--gold);">10:00 AM – 10:00 PM</td></tr>
+      </table>
+    </div>
+    <div class="card" style="padding:2rem;text-align:center;">
+      <h3 style="color:var(--cream);font-family:var(--font-head);margin-bottom:.75rem;">Ready to Dine?</h3>
+      <p style="margin-bottom:1.5rem;">Make a reservation or place your order online now. No waiting — just great food.</p>
+      <a href="reservations.html" class="btn btn-primary btn-block" style="margin-bottom:.75rem;">Book a Table</a>
+      <a href="order.html" class="btn btn-outline btn-block">Order Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="grid footer-grid">
+      <div>
+        <div class="footer-brand">Ember &amp; Plate</div>
+        <p class="footer-desc">Fine casual dining in the heart of Petaling Jaya. Walk in or order from wherever you are.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order Online</a></li>
+          <li><a href="reservations.html">Reservations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">📍 Jalan SS2/24, Petaling Jaya</a></li>
+          <li><a href="tel:+60312345678">📞 +603-1234-5678</a></li>
+          <li><a href="mailto:hello@emberplate.com">✉️ hello@emberplate.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ember &amp; Plate. All rights reserved.</span>
+      <span>Crafted with 🔥 in PJ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
