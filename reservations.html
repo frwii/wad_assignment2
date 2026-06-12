@@ -1,3 +1,4 @@
+reservations.html:
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reserve a Table — Ember &amp; Plate</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Pure CSS Fade-In Animations matching the Menu style */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUpKeyframe 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .fade-up-1 { animation-delay: 0.1s; }
+    .fade-up-2 { animation-delay: 0.25s; }
+    .fade-up-3 { animation-delay: 0.4s; }
+
+    @keyframes fadeUpKeyframe {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,12 +44,12 @@
 
 <section style="background:var(--bg2);padding:4rem 0 2rem;text-align:center;border-bottom:1px solid rgba(201,150,58,0.1);">
   <div class="container">
-    <h1 style="color:var(--cream);">Reserve a Table</h1>
-    <p style="max-width:460px;margin:.75rem auto 0;">Book your preferred table in seconds. We'll confirm within 30 minutes.</p>
+    <h1 class="fade-up fade-up-1" style="color:var(--cream);">Reserve a Table</h1>
+    <p class="fade-up fade-up-2" style="max-width:460px;margin:.75rem auto 0;">Book your preferred table in seconds. We'll confirm within 30 minutes.</p>
   </div>
 </section>
 
-<section class="section">
+<section class="section fade-up fade-up-3">
   <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
 
     <!-- FORM -->
@@ -125,7 +144,6 @@
           <textarea id="r-requests" class="form-control" placeholder="Allergies, dietary restrictions, high chair needed, etc." rows="3"></textarea>
         </div>
 
-        <!-- Terms checkbox -->
         <div class="form-group" style="display:flex;gap:.75rem;align-items:flex-start;">
           <input type="checkbox" id="r-terms" style="width:18px;height:18px;margin-top:.2rem;accent-color:var(--gold);" />
           <label for="r-terms" style="font-size:.88rem;color:var(--text-muted);">
@@ -159,7 +177,6 @@
           <p style="font-size:.9rem;margin-bottom:.75rem;">📞 <a href="tel:+60312345678">+603-1234-5678</a></p>
           <p style="font-size:.9rem;">✉️ <a href="mailto:reservations@emberplate.com">reservations@emberplate.com</a></p>
           
-          <!-- Live Google Maps GPS Embed -->
           <div style="margin-top:1.25rem;border-radius:6px;overflow:hidden;height:250px;background:var(--bg3);">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.764585143336!2d102.281862!3d2.2415179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1f05786358357%3A0xc0051e704041d8e1!2sJalan%20TTU%2061%2C%20Taman%20Tasik%20Utama%2C%2075450%20Ayer%20Keroh%2C%20Melaka!5e0!3m2!1sen!2smy!4v1718171717171!5m2!1sen!2smy" 
@@ -171,7 +188,6 @@
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
-          
         </div>
       </div>
     </div>
@@ -179,11 +195,17 @@
   </div>
 </section>
 
-<footer class="footer"><div class="container"><div class="footer-bottom"><span>© 2024 Ember &amp; Plate.</span><span><a href="index.html">Home</a></span></div></div></footer>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2024 Ember &amp; Plate. All rights reserved.</span>
+      <span><a href="index.html">Home</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 <script>
-// Set min date to today
 const dateInput = document.getElementById('r-date');
 const today = new Date().toISOString().split('T')[0];
 dateInput.setAttribute('min', today);
@@ -202,7 +224,6 @@ document.getElementById('reservationForm').addEventListener('submit', function(e
     valid &= validateField(document.getElementById('r-guests'), {required:true, requiredMsg:'Please select number of guests.'});
   }
 
-  // Terms checkbox
   const terms = document.getElementById('r-terms');
   const termsErr = document.getElementById('terms-err');
   if (!terms.checked) {
@@ -213,13 +234,10 @@ document.getElementById('reservationForm').addEventListener('submit', function(e
     termsErr.classList.remove('show');
   }
 
-  // Future date check
   const selectedDate = new Date(document.getElementById('r-date').value);
   if (document.getElementById('r-date').value && selectedDate < new Date(today)) {
     if (typeof showError === 'function') {
       showError(document.getElementById('r-date'), 'Please select a future date.');
-    } else {
-      alert('Please select a future date.');
     }
     valid = false;
   }
@@ -228,8 +246,6 @@ document.getElementById('reservationForm').addEventListener('submit', function(e
     const ref = 'EP-R' + Math.floor(10000 + Math.random() * 90000);
     if (typeof showAlert === 'function') {
       showAlert('res-success', 'success', `✅ Reservation confirmed! Reference: ${ref}. Check your email for confirmation.`);
-    } else {
-      alert(`✅ Reservation confirmed! Reference: ${ref}.`);
     }
     document.getElementById('res-success').scrollIntoView({behavior:'smooth'});
     this.reset();
